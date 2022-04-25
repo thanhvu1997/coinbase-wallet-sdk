@@ -3,6 +3,7 @@
   "compilerOptions": {
     "declaration": true,
     "module": "commonjs",
+    "outDir": "./build/npm/dist",
     "moduleResolution": "node",
     "outDir": "./build/npm/dist",
     "target": "es2017"
