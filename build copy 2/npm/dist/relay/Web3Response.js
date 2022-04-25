@@ -1,55 +1,90 @@
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.AddEthereumChainResponse = AddEthereumChainResponse;
+exports.ErrorResponse = ErrorResponse;
+exports.EthereumAddressFromSignedMessageResponse = EthereumAddressFromSignedMessageResponse;
+exports.RequestEthereumAccountsResponse = RequestEthereumAccountsResponse;
+exports.SignEthereumMessageResponse = SignEthereumMessageResponse;
+exports.SignEthereumTransactionResponse = SignEthereumTransactionResponse;
+exports.SubmitEthereumTransactionResponse = SubmitEthereumTransactionResponse;
+exports.SwitchEthereumChainResponse = SwitchEthereumChainResponse;
+exports.WatchAssetReponse = WatchAssetReponse;
+exports.isRequestEthereumAccountsResponse = isRequestEthereumAccountsResponse;
+
+var _Web3Method = require("./Web3Method");
+
 // Copyright (c) 2018-2022 Coinbase, Inc. <https://www.coinbase.com/>
 // Licensed under the Apache License, version 2.0
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.EthereumAddressFromSignedMessageResponse = exports.SubmitEthereumTransactionResponse = exports.SignEthereumTransactionResponse = exports.SignEthereumMessageResponse = exports.isRequestEthereumAccountsResponse = exports.WatchAssetReponse = exports.RequestEthereumAccountsResponse = exports.SwitchEthereumChainResponse = exports.AddEthereumChainResponse = exports.ErrorResponse = void 0;
-const Web3Method_1 = require("./Web3Method");
 function ErrorResponse(method, errorMessage, errorCode) {
-    return { method, errorMessage, errorCode };
+  return {
+    method,
+    errorMessage,
+    errorCode
+  };
 }
-exports.ErrorResponse = ErrorResponse;
+
 function AddEthereumChainResponse(addResponse) {
-    return {
-        method: Web3Method_1.Web3Method.addEthereumChain,
-        result: addResponse
-    };
+  return {
+    method: _Web3Method.Web3Method.addEthereumChain,
+    result: addResponse
+  };
 }
-exports.AddEthereumChainResponse = AddEthereumChainResponse;
+
 function SwitchEthereumChainResponse(switchResponse) {
-    return {
-        method: Web3Method_1.Web3Method.switchEthereumChain,
-        result: switchResponse
-    };
+  return {
+    method: _Web3Method.Web3Method.switchEthereumChain,
+    result: switchResponse
+  };
 }
-exports.SwitchEthereumChainResponse = SwitchEthereumChainResponse;
+
 function RequestEthereumAccountsResponse(addresses) {
-    return { method: Web3Method_1.Web3Method.requestEthereumAccounts, result: addresses };
+  return {
+    method: _Web3Method.Web3Method.requestEthereumAccounts,
+    result: addresses
+  };
 }
-exports.RequestEthereumAccountsResponse = RequestEthereumAccountsResponse;
+
 function WatchAssetReponse(success) {
-    return { method: Web3Method_1.Web3Method.watchAsset, result: success };
+  return {
+    method: _Web3Method.Web3Method.watchAsset,
+    result: success
+  };
 }
-exports.WatchAssetReponse = WatchAssetReponse;
+
 function isRequestEthereumAccountsResponse(res) {
-    return res && res.method === Web3Method_1.Web3Method.requestEthereumAccounts;
+  return res && res.method === _Web3Method.Web3Method.requestEthereumAccounts;
 }
-exports.isRequestEthereumAccountsResponse = isRequestEthereumAccountsResponse;
+
 function SignEthereumMessageResponse(signature) {
-    return { method: Web3Method_1.Web3Method.signEthereumMessage, result: signature };
+  return {
+    method: _Web3Method.Web3Method.signEthereumMessage,
+    result: signature
+  };
 }
-exports.SignEthereumMessageResponse = SignEthereumMessageResponse;
+
+// signature
 function SignEthereumTransactionResponse(signedData) {
-    return { method: Web3Method_1.Web3Method.signEthereumTransaction, result: signedData };
+  return {
+    method: _Web3Method.Web3Method.signEthereumTransaction,
+    result: signedData
+  };
 }
-exports.SignEthereumTransactionResponse = SignEthereumTransactionResponse;
+
+// signed transaction
 function SubmitEthereumTransactionResponse(txHash) {
-    return { method: Web3Method_1.Web3Method.submitEthereumTransaction, result: txHash };
+  return {
+    method: _Web3Method.Web3Method.submitEthereumTransaction,
+    result: txHash
+  };
 }
-exports.SubmitEthereumTransactionResponse = SubmitEthereumTransactionResponse;
+
+// transaction hash
 function EthereumAddressFromSignedMessageResponse(address) {
-    return {
-        method: Web3Method_1.Web3Method.ethereumAddressFromSignedMessage,
-        result: address
-    };
+  return {
+    method: _Web3Method.Web3Method.ethereumAddressFromSignedMessage,
+    result: address
+  };
 }
-exports.EthereumAddressFromSignedMessageResponse = EthereumAddressFromSignedMessageResponse;

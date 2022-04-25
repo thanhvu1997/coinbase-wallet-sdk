@@ -1,6 +1,10 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="50" cy="50" r="50" fill="white"/>
 <circle cx="49.9996" cy="49.9996" r="43.6363" fill="#1B53E4"/>
 <circle cx="49.9996" cy="49.9996" r="43.6363" stroke="white"/>
@@ -8,3 +12,4 @@ exports.default = `<svg width="100" height="100" viewBox="0 0 100 100" fill="non
 </svg>
 
 `;
+exports.default = _default;

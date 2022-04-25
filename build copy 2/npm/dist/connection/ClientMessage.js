@@ -1,25 +1,47 @@
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ClientMessageGetSessionConfig = ClientMessageGetSessionConfig;
+exports.ClientMessageHostSession = ClientMessageHostSession;
+exports.ClientMessageIsLinked = ClientMessageIsLinked;
+exports.ClientMessagePublishEvent = ClientMessagePublishEvent;
+exports.ClientMessageSetSessionConfig = ClientMessageSetSessionConfig;
+
 // Copyright (c) 2018-2022 Coinbase, Inc. <https://www.coinbase.com/>
 // Licensed under the Apache License, version 2.0
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ClientMessagePublishEvent = exports.ClientMessageSetSessionConfig = exports.ClientMessageGetSessionConfig = exports.ClientMessageIsLinked = exports.ClientMessageHostSession = void 0;
 function ClientMessageHostSession(params) {
-    return Object.assign({ type: "HostSession" }, params);
+  return {
+    type: "HostSession",
+    ...params
+  };
 }
-exports.ClientMessageHostSession = ClientMessageHostSession;
+
 function ClientMessageIsLinked(params) {
-    return Object.assign({ type: "IsLinked" }, params);
+  return {
+    type: "IsLinked",
+    ...params
+  };
 }
-exports.ClientMessageIsLinked = ClientMessageIsLinked;
+
 function ClientMessageGetSessionConfig(params) {
-    return Object.assign({ type: "GetSessionConfig" }, params);
+  return {
+    type: "GetSessionConfig",
+    ...params
+  };
 }
-exports.ClientMessageGetSessionConfig = ClientMessageGetSessionConfig;
+
 function ClientMessageSetSessionConfig(params) {
-    return Object.assign({ type: "SetSessionConfig" }, params);
+  return {
+    type: "SetSessionConfig",
+    ...params
+  };
 }
-exports.ClientMessageSetSessionConfig = ClientMessageSetSessionConfig;
+
 function ClientMessagePublishEvent(params) {
-    return Object.assign({ type: "PublishEvent" }, params);
+  return {
+    type: "PublishEvent",
+    ...params
+  };
 }
-exports.ClientMessagePublishEvent = ClientMessagePublishEvent;
