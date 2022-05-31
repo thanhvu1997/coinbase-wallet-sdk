@@ -34,6 +34,8 @@ export interface CoinbaseWalletSDKOptions {
   overrideIsCoinbaseWallet?: boolean;
   /** @optional whether or not onboarding overlay popup should be displayed */
   headlessMode?: boolean;
+  /** @optional whether or not to disable reloading dapp automatically after disconnect */
+  disableReloadDisconnect?: boolean;
 }
 
 export class CoinbaseWalletSDK {
@@ -47,6 +49,7 @@ export class CoinbaseWalletSDK {
   private _overrideIsMetaMask: boolean;
   private _overrideIsCoinbaseWallet: boolean;
   private _eventListener?: EventListener;
+  private _disableReloadDisconnect?: boolean;
 
   /**
    * Constructor
@@ -70,6 +73,8 @@ export class CoinbaseWalletSDK {
     this._overrideIsCoinbaseWallet = options.overrideIsCoinbaseWallet ?? true;
 
     this._eventListener = options.eventListener;
+
+    this._disableReloadDisconnect = options.disableReloadDisconnect;
 
     const u = new URL(linkAPIUrl);
     const origin = `${u.protocol}//${u.host}`;
@@ -114,6 +119,8 @@ export class CoinbaseWalletSDK {
       if (!this.isCipherProvider(extension)) {
         extension.setProviderInfo(jsonRpcUrl, chainId);
       }
+
+      if (this._disableReloadDisconnect) extension.setDisableDisconnectReload();
 
       return extension;
     }

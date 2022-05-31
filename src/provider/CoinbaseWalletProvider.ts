@@ -67,6 +67,7 @@ export class CoinbaseWalletProvider
   // So dapps can easily identify Coinbase Wallet for enabling features like 3085 network switcher menus
   public readonly isCoinbaseWallet: boolean;
   public readonly qrUrl?: string | null;
+  public disableDisconnectReload: boolean;
 
   private readonly _filterPolyfill = new FilterPolyfill(this);
   private readonly _subscriptionManager = new SubscriptionManager(this);
@@ -108,6 +109,7 @@ export class CoinbaseWalletProvider
     this._storage = options.storage;
     this._relayEventManager = options.relayEventManager;
     this._eventListener = options.eventListener;
+    this.disableDisconnectReload = false;
 
     this.isCoinbaseWallet = options.overrideIsCoinbaseWallet ?? true;
 
@@ -209,6 +211,10 @@ export class CoinbaseWalletProvider
 
   private set isChainOverridden(value: boolean) {
     this._storage.setItem(HAS_CHAIN_OVERRIDDEN_FROM_RELAY, value.toString());
+  }
+
+  public setDisableDisconnectReload() {
+    this.disableDisconnectReload = true;
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
