@@ -14,10 +14,11 @@ class ViewController: UITableViewController {
     @IBOutlet weak var isConnectedLabel: UILabel!
     @IBOutlet weak var ownPubKeyLabel: UILabel!
     @IBOutlet weak var peerPubKeyLabel: UILabel!
-    
     @IBOutlet weak var logTextView: UITextView!
     
     private let cbwallet = CoinbaseWalletSDK.shared
+    
+    private var address: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,10 @@ class ViewController: UITableViewController {
         ) { result in
             switch result {
             case .success(let response):
-                self.logObject(label: "Response:\n", response)
+                guard let returnValue = response.content.first,
+                      case .result(value: let address) = returnValue else { break }
+                self.address = address
+                self.log("Address: \(address)")
             case .failure(let error):
                 self.log("\(error)")
             }
@@ -50,12 +54,19 @@ class ViewController: UITableViewController {
     
     @IBAction func makeRequest() {
         cbwallet.makeRequest(
-            Request(actions: [
-                Action(jsonRpc: .personal_sign(address: "", message: "message".data(using: .utf8)!)),
-                Action(jsonRpc: .eth_signTypedData_v3(address: "", message: Data()))
-            ])
+            Request(
+                actions: [
+                    Action(jsonRpc: .personal_sign(address: self.address ?? "", message: "message".data(using: .utf8)!)),
+                ]
+//              , account: Account(chain: "eth", networkId: 1, address: self.address)
+            )
         ) { result in
-            self.log("\(result)")
+            switch result {
+            case .success(let response):
+                self.logObject(response)
+            case .failure(let error):
+                self.log("\(error)")
+            }
         }
     }
     
